@@ -6,7 +6,6 @@ from pydantic.networks import EmailStr
 from sqlalchemy.orm import Session
 
 import models
-import schemas
 from api import deps
 from core.config import settings
 from crud.crud_user import crud_user
@@ -67,7 +66,7 @@ def update_user_me(
     Update own user.
     """
     current_user_data = jsonable_encoder(current_user)
-    user_in = schemas.UserUpdate(**current_user_data)
+    user_in = UserUpdate(**current_user_data)
     if password is not None:
         user_in.password = password
     if full_name is not None:
@@ -80,7 +79,6 @@ def update_user_me(
 
 @router.get("/me", response_model=User)
 def read_user_me(
-    db: Session = Depends(deps.get_db),
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
