@@ -30,3 +30,4 @@ class CRUDItem(CRUDBase):
 
 
 crud_item = CRUDItem(Item)
+

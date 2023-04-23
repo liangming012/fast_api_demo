@@ -1,11 +1,12 @@
-from typing import Any, Dict, Optional, Union
+from typing import Dict, Optional, Union
 
 from sqlalchemy.orm import Session
 
 import models
 from core.security import get_password_hash, verify_password
 from crud.base import CRUDBase
-from schemas.user import UserCreate, User
+from models import User
+from schemas.user import UserCreate
 
 
 class CRUDUser(CRUDBase):
